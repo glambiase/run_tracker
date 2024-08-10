@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -19,9 +20,10 @@ dependencyResolutionManagement {
     }
 }
 
+rootProject.name = "RunTracker"
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "RunTracker"
 include(":app")
 include(":auth:data")
 include(":auth:domain")
