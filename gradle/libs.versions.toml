@@ -40,12 +40,12 @@ playServicesMaps = "19.0.0"
 annotation = "1.9.1"
 
 # Project versions
+projectCompileSdk = "35"
 projectApplicationId = "com.glambiase.run_tracker"
-projectVersionName = "1.0"
-projectMinSdkVersion = "25"
-projectTargetSdkVersion = "35"
-projectCompileSdkVersion = "35"
+projectMinSdk = "25"
+projectTargetSdk = "35"
 projectVersionCode = "1"
+projectVersionName = "1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -117,3 +117,5 @@ room = { id = "androidx.room", version.ref = "room" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
+
+runtracker-android-application = { id = "runtracker.android.application", version = "unspecified" }
