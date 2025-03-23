@@ -119,3 +119,4 @@ android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "a
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
 
 runtracker-android-application = { id = "runtracker.android.application", version = "unspecified" }
+runtracker-android-application-compose = { id = "runtracker.android.application.compose", version = "unspecified" }
