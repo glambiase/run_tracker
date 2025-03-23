@@ -1,4 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.glambiase.build_logic.convention.ExtensionType
+import com.glambiase.build_logic.convention.configureBuildTypes
 import com.glambiase.build_logic.convention.configureKotlinAndroid
 import com.glambiase.build_logic.convention.libs
 import org.gradle.api.Plugin
@@ -22,7 +24,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     versionName = libs.findVersion("projectVersionName").get().toString()
                 }
 
-                configureKotlinAndroid(this)
+                configureKotlinAndroid(commonExtension = this)
+
+                configureBuildTypes(commonExtension = this, extensionType = ExtensionType.APPLICATION)
             }
         }
     }
