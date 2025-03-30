@@ -125,6 +125,7 @@ runtracker-android-library-compose = { id = "runtracker.android.library.compose"
 runtracker-android-feature-ui = { id = "runtracker.android.feature.ui", version = "unspecified" }
 runtracker-android-room = { id = "runtracker.android.room", version = "unspecified" }
 runtracker-jvm-library = { id = "runtracker.jvm.library", version = "unspecified" }
+runtracker-jvm-ktor = { id = "runtracker.jvm.ktor", version = "unspecified" }
 
 [bundles]
 compose = [
@@ -150,4 +151,12 @@ koin-compose = [
     "koin-android",
     "koin-android-workmanager",
     "koin-androidx-compose"
+]
+ktor = [
+    "ktor-client-auth",
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-logging",
+    "ktor-serialization-kotlinx-json"
 ]
