@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.runtracker.android.application.compose)
     alias(libs.plugins.runtracker.jvm.ktor)
-    alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
 android {
@@ -42,6 +41,8 @@ dependencies {
 
     // Crypto
     implementation(libs.androidx.security.crypto.ktx)
+
+    implementation(libs.bundles.koin)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
