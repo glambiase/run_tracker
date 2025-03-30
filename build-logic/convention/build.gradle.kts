@@ -34,5 +34,9 @@ gradlePlugin {
             id = "runtracker.android.feature.ui"
             implementationClass = "AndroidFeatureUIConventionPlugin"
         }
+        register("androidRoom") {
+            id = "runtracker.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
+        }
     }
 }

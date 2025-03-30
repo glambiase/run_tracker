@@ -123,6 +123,7 @@ runtracker-android-application-compose = { id = "runtracker.android.application.
 runtracker-android-library = { id = "runtracker.android.library", version = "unspecified" }
 runtracker-android-library-compose = { id = "runtracker.android.library.compose", version = "unspecified" }
 runtracker-android-feature-ui = { id = "runtracker.android.feature.ui", version = "unspecified" }
+runtracker-android-room = { id = "runtracker.android.room", version = "unspecified" }
 
 [bundles]
 compose = [
