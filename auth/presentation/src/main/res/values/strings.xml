@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="logo_text">Run Tracker</string>
+    <string name="welcome_text">Welcome to Run Tracker!</string>
+    <string name="intro_description">Track your runs, set goals, and achieve fitness milestones.</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+</resources>
