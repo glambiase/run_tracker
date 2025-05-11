@@ -14,7 +14,7 @@
     <string name="email_hint">example@test.com</string>
     <string name="email_title">Email</string>
     <string name="email_additional_info">Must be a valid email</string>
-    <string name="password_hint">Password</string>
+    <string name="password_hint">password</string>
     <string name="password_title">Password</string>
     <string name="pwd_requirement_0">At least %d characters</string>
     <string name="pwd_requirement_1">At least one number</string>

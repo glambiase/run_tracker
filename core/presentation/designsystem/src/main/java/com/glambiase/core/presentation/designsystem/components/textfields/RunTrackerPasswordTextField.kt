@@ -88,7 +88,7 @@ fun RunTrackerPasswordTextField(
                     color = if (isFocused) MaterialTheme.colorScheme.primary else Color.Transparent,
                     shape = RoundedCornerShape(16.dp)
                 )
-                .padding(16.dp)
+                .padding(horizontal = 16.dp, vertical = 8.dp)
                 .onFocusChanged {
                     isFocused = it.isFocused
                 },

@@ -120,7 +120,7 @@ fun RegistrationScreen(
                     additionalInfo = stringResource(R.string.email_additional_info),
                     keyboardType = KeyboardType.Email
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(24.dp))
                 RunTrackerPasswordTextField(
                     state = state.password,
                     hint = stringResource(R.string.password_hint),
@@ -130,7 +130,7 @@ fun RegistrationScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(24.dp))
                 PasswordRequirementsSection(
                     passwordValidationState = state.passwordValidationState
                 )
