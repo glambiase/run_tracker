@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- intro screen -->
     <string name="logo_text">Run Tracker</string>
     <string name="welcome_text">Welcome to Run Tracker!</string>
     <string name="intro_description">Track your runs, set goals, and achieve fitness milestones.</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
+
+    <!-- registration screen -->
+    <string name="create_account">Create Account</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="email_hint">example@test.com</string>
+    <string name="email_title">Email</string>
+    <string name="email_additional_info">Must be a valid email</string>
+    <string name="password_hint">Password</string>
+    <string name="password_title">Password</string>
+    <string name="pwd_requirement_0">At least %d characters</string>
+    <string name="pwd_requirement_1">At least one number</string>
+    <string name="pwd_requirement_2">Contains lowercase character</string>
+    <string name="pwd_requirement_3">Contains uppercase character</string>
+    <string name="registration_btn">Register</string>
+
+    <!-- accessibility content descriptions -->
+    <string name="logo_cd">logo</string>
 </resources>

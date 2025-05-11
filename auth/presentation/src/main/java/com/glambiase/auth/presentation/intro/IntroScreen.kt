@@ -66,7 +66,7 @@ private fun RunTrackerLogo(
     ) {
         Icon(
             imageVector = LogoIcon,
-            contentDescription = "Logo",
+            contentDescription = stringResource(R.string.logo_cd),
             tint = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(12.dp))

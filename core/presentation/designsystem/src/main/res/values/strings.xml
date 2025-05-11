@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- accessibility content descriptions -->
+    <string name="show_password_cd">Show password</string>
+    <string name="hide_password_cd">Hide password</string>
+</resources>
