@@ -4,8 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.glambiase.auth.domain.UserDataValidator
 import com.glambiase.core.presentation.ui.textAsFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class RegistrationViewModel(
@@ -18,17 +20,23 @@ class RegistrationViewModel(
     init {
         state.email.textAsFlow()
             .onEach { email ->
+                val isEmailValid = userDataValidator.isValidEmail(email.toString())
                 state = state.copy(
-                    isEmailValid = userDataValidator.isValidEmail(email.toString())
+                    isEmailValid = isEmailValid,
+                    canRegister = isEmailValid && state.passwordValidationState.isValidPassword && !state.isRegistering
                 )
             }
+            .launchIn(viewModelScope)
 
         state.password.textAsFlow()
             .onEach { password ->
+                val passwordValidationState = userDataValidator.validatePassword(password.toString())
                 state = state.copy(
-                    passwordValidationState = userDataValidator.validatePassword(password.toString())
+                    passwordValidationState = passwordValidationState,
+                    canRegister = state.isEmailValid && passwordValidationState.isValidPassword && !state.isRegistering
                 )
             }
+            .launchIn(viewModelScope)
     }
 
     fun onAction(action: RegistrationAction) {
