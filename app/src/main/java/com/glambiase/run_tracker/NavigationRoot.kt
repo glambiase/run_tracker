@@ -29,10 +29,10 @@ private fun NavGraphBuilder.authGraph(navHostController: NavHostController) {
         composable<Routes.Intro> {
             IntroScreenRoot(
                 onSignInClick = {
-                    navHostController.navigate(Routes.Registration)
+                    navHostController.navigate(Routes.Login)
                 },
                 onSignUpClick = {
-                    navHostController.navigate(Routes.Login)
+                    navHostController.navigate(Routes.Registration)
                 }
             )
         }

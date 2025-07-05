@@ -14,6 +14,6 @@ class UserDataValidator(
         )
 
     companion object {
-        const val MIN_PWD_LENGTH = 8
+        const val MIN_PWD_LENGTH = 9
     }
 }

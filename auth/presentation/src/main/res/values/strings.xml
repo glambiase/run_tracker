@@ -21,6 +21,8 @@
     <string name="pwd_requirement_2">Contains lowercase character</string>
     <string name="pwd_requirement_3">Contains uppercase character</string>
     <string name="registration_btn">Register</string>
+    <string name="registration_error_email_exists">A user with that email already exists.</string>
+    <string name="registration_successful">Registration successful. You can log in now!</string>
 
     <!-- accessibility content descriptions -->
     <string name="logo_cd">logo</string>
