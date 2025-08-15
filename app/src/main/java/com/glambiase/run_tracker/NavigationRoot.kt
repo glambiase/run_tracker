@@ -1,6 +1,5 @@
 package com.glambiase.run_tracker
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -8,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.glambiase.auth.presentation.intro.IntroScreenRoot
+import com.glambiase.auth.presentation.login.LoginScreenRoot
 import com.glambiase.auth.presentation.registration.RegistrationScreenRoot
 
 @Composable
@@ -53,7 +53,24 @@ private fun NavGraphBuilder.authGraph(navHostController: NavHostController) {
             )
         }
         composable<Routes.Login> {
-            Text(text = "Login")
+            LoginScreenRoot(
+                onSignUpClick = {
+                    navHostController.navigate(Routes.Registration) {
+                        popUpTo(Routes.Login) {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
+                    }
+                },
+                onSuccessfulLogin = {
+                    navHostController.navigate(Routes.Run) {
+                        popUpTo(Routes.Auth) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
     }
 }

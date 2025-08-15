@@ -15,4 +15,7 @@ sealed interface Routes {
 
     @Serializable
     data object Login: Routes
+
+    @Serializable
+    data object Run: Routes
 }

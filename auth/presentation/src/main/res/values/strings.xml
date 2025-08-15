@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- common strings -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+
     <!-- intro screen -->
     <string name="logo_text">Run Tracker</string>
     <string name="welcome_text">Welcome to Run Tracker!</string>
     <string name="intro_description">Track your runs, set goals, and achieve fitness milestones.</string>
-    <string name="sign_in">Sign In</string>
-    <string name="sign_up">Sign Up</string>
 
     <!-- registration screen -->
-    <string name="create_account">Create Account</string>
-    <string name="already_have_account">Already have an account?</string>
+    <string name="registration_main_text">Create Account</string>
+    <string name="registration_secondary_text">Already have an account?</string>
     <string name="login">Login</string>
     <string name="email_hint">example@test.com</string>
     <string name="email_title">Email</string>
@@ -24,6 +26,14 @@
     <string name="registration_error_email_exists">A user with that email already exists.</string>
     <string name="registration_successful">Registration successful. You can log in now!</string>
 
+    <!-- login screen -->
+    <string name="login_main_text">Hi there!</string>
+    <string name="login_secondary_text">Welcome to your run tracker app! Track, analyze and conquer your runs.</string>
+    <string name="dont_have_account">Don\t have an account yet?</string>
+    <string name="login_error_email_or_pwd">The email or password is incorrect.</string>
+    <string name="login_successful">You are logged in now!</string>
+
     <!-- accessibility content descriptions -->
     <string name="logo_cd">logo</string>
+
 </resources>

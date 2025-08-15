@@ -54,8 +54,8 @@ class RegistrationViewModel(
 
     fun onAction(action: RegistrationAction) {
         when (action) {
-            RegistrationAction.OnPasswordVisibilityClick -> state = state.copy(isPasswordVisible = !state.isPasswordVisible)
             RegistrationAction.OnRegisterClick -> register()
+            RegistrationAction.OnPasswordVisibilityClick -> state = state.copy(isPasswordVisible = !state.isPasswordVisible)
             RegistrationAction.OnLoginClick -> Unit // we navigate directly from the UI
         }
     }

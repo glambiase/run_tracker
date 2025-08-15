@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.sp
 import com.glambiase.auth.domain.PasswordValidationState
 import com.glambiase.auth.domain.UserDataValidator
 import com.glambiase.auth.presentation.R
-import com.glambiase.auth.presentation.registration.util.RegistrationConstants.CLICKABLE_TEXT_TAG
-import com.glambiase.auth.presentation.registration.util.RegistrationConstants.LOGIN_ANNOTATION
+import com.glambiase.auth.presentation.util.Constants.CLICKABLE_TEXT_TAG
+import com.glambiase.auth.presentation.util.Constants.LOGIN_ANNOTATION
 import com.glambiase.core.presentation.designsystem.CheckIcon
 import com.glambiase.core.presentation.designsystem.CrossIcon
 import com.glambiase.core.presentation.designsystem.EmailIcon
@@ -74,7 +74,13 @@ fun RegistrationScreenRoot(
 
     RegistrationScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                RegistrationAction.OnLoginClick -> onSignInClick()
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
@@ -96,7 +102,7 @@ fun RegistrationScreen(
                     .padding(vertical = 32.dp)
             ) {
                 Text(
-                    text = stringResource(R.string.create_account),
+                    text = stringResource(R.string.registration_main_text),
                     style = MaterialTheme.typography.headlineMedium
                 )
                 val annotatedString = buildAnnotatedString {
@@ -106,7 +112,7 @@ fun RegistrationScreen(
                             fontFamily = Poppins
                         )
                     ) {
-                        append(stringResource(R.string.already_have_account) + " ")
+                        append(stringResource(R.string.registration_secondary_text) + " ")
                         pushStringAnnotation(
                             tag = CLICKABLE_TEXT_TAG,
                             annotation = LOGIN_ANNOTATION
@@ -221,8 +227,7 @@ private fun PasswordRequirement(
 
 @Preview
 @Composable
-fun RegistrationScreenPreview(
-) {
+private fun RegistrationScreenPreview() {
     RunTrackerTheme {
         RegistrationScreen(
             state = RegistrationState(
