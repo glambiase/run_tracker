@@ -13,11 +13,12 @@ import com.glambiase.auth.presentation.registration.RegistrationScreenRoot
 
 @Composable
 fun NavigationRoot(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    isLoggedIn: Boolean
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Routes.Auth
+        startDestination = if (isLoggedIn) Routes.Run else Routes.Auth
     ) {
         authGraph(navHostController = navHostController)
         runGraph(navHostController = navHostController)
