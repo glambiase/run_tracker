@@ -38,8 +38,7 @@ class RegistrationViewModel(
                     isEmailValid = isEmailValid,
                     canRegister = isEmailValid && state.passwordValidationState.isValidPassword && !state.isRegistering
                 )
-            }
-            .launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
 
         state.password.textAsFlow()
             .onEach { password ->
@@ -48,8 +47,7 @@ class RegistrationViewModel(
                     passwordValidationState = passwordValidationState,
                     canRegister = state.isEmailValid && passwordValidationState.isValidPassword && !state.isRegistering
                 )
-            }
-            .launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
     }
 
     fun onAction(action: RegistrationAction) {

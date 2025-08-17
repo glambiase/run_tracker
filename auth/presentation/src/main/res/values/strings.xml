@@ -28,9 +28,10 @@
 
     <!-- login screen -->
     <string name="login_main_text">Hi there!</string>
-    <string name="login_secondary_text">Welcome to your run tracker app! Track, analyze and conquer your runs.</string>
-    <string name="dont_have_account">Don\t have an account yet?</string>
-    <string name="login_error_email_or_pwd">The email or password is incorrect.</string>
+    <string name="login_secondary_text">Welcome to your run tracker app! Track, analyse and conquer your runs.</string>
+    <string name="dont_have_account">Don\'t have an account yet?</string>
+    <string name="login_btn">Login</string>
+    <string name="login_error_email_or_pwd_incorrect">The email or password is incorrect.</string>
     <string name="login_successful">You are logged in now!</string>
 
     <!-- accessibility content descriptions -->

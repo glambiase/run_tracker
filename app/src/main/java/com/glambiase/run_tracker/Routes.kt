@@ -4,18 +4,25 @@ import kotlinx.serialization.Serializable
 
 sealed interface Routes {
 
-    @Serializable
-    data object Intro : Routes
-
+    /*** auth_graph ***/
     @Serializable
     data object Auth: Routes
 
     @Serializable
-    data object Registration: Routes
+    data object Intro : Routes
 
     @Serializable
-    data object Login: Routes
+    data object Registration : Routes
 
     @Serializable
-    data object Run: Routes
+    data object Login : Routes
+    /*** ***/
+
+    /*** run_graph ***/
+    @Serializable
+    data object Run : Routes
+
+    @Serializable
+    data object RunOverview : Routes
+    /*** ***/
 }

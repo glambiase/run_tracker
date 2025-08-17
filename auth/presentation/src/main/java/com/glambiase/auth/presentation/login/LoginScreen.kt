@@ -100,7 +100,7 @@ fun LoginScreen(
                 Text(
                     text = stringResource(R.string.login_secondary_text),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontSize = 14.sp
+                    fontSize = 16.sp
                 )
                 Spacer(modifier = Modifier.height(48.dp))
                 RunTrackerTextField(
@@ -130,7 +130,7 @@ fun LoginScreen(
                 modifier = Modifier
             ) {
                 RunTrackerActionButton(
-                    text = stringResource(R.string.registration_btn),
+                    text = stringResource(R.string.login_btn),
                     isLoading = state.isLoggingIn,
                     enabled = state.canLogin && !state.isLoggingIn,
                     onClick = { onAction(LoginAction.OnLoginClick) },
