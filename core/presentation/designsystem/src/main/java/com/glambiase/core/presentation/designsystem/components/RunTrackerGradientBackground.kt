@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 
 @Composable
-fun GradientBackground(
+fun RunTrackerGradientBackground(
     modifier: Modifier = Modifier,
-    hasToolbar: Boolean = true,
+    hasTopAppBar: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
 ) {
     /**
@@ -77,7 +77,7 @@ fun GradientBackground(
             modifier = Modifier
                 .fillMaxSize()
                 .then(
-                    if (hasToolbar) Modifier
+                    if (hasTopAppBar) Modifier
                     else Modifier.systemBarsPadding()
                 )
         ) {
@@ -90,7 +90,7 @@ fun GradientBackground(
 @Composable
 private fun GradientBackgroundPreview() {
     RunTrackerTheme {
-        GradientBackground(
+        RunTrackerGradientBackground(
             modifier = Modifier.fillMaxSize(),
             content = {}
         )

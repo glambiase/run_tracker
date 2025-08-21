@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.glambiase.auth.presentation.R
 import com.glambiase.core.presentation.designsystem.LogoIcon
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
-import com.glambiase.core.presentation.designsystem.components.GradientBackground
+import com.glambiase.core.presentation.designsystem.components.RunTrackerGradientBackground
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerActionButton
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerOutlinedActionButton
 
@@ -41,7 +41,7 @@ fun IntroScreenRoot(
 fun IntroScreen(
     onAction: (IntroAction) -> Unit
 ) {
-    GradientBackground {
+    RunTrackerGradientBackground {
         Box(
             modifier = Modifier
                 .fillMaxWidth()

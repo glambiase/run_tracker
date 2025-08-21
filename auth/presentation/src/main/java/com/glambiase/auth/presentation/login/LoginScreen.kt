@@ -34,7 +34,7 @@ import com.glambiase.core.presentation.designsystem.EmailIcon
 import com.glambiase.core.presentation.designsystem.Poppins
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 import com.glambiase.core.presentation.designsystem.components.ClickableTextWrapper
-import com.glambiase.core.presentation.designsystem.components.GradientBackground
+import com.glambiase.core.presentation.designsystem.components.RunTrackerGradientBackground
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerActionButton
 import com.glambiase.core.presentation.designsystem.components.textfields.RunTrackerPasswordTextField
 import com.glambiase.core.presentation.designsystem.components.textfields.RunTrackerTextField
@@ -81,7 +81,7 @@ fun LoginScreen(
     state: LoginState,
     onAction: (LoginAction) -> Unit
 ) {
-    GradientBackground {
+    RunTrackerGradientBackground {
         Column(
             modifier = Modifier
                 .fillMaxSize()

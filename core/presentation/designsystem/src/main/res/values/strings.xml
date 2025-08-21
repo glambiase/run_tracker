@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- accessibility content descriptions -->
-    <string name="show_password_cd">Show password</string>
-    <string name="hide_password_cd">Hide password</string>
+    <string name="show_password_cd">show password</string>
+    <string name="hide_password_cd">hide password</string>
+    <string name="go_back_cd">go back</string>
+    <string name="open_menu_cd">open menu</string>
 </resources>

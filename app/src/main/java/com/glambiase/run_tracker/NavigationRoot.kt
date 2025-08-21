@@ -10,6 +10,7 @@ import androidx.navigation.compose.navigation
 import com.glambiase.auth.presentation.intro.IntroScreenRoot
 import com.glambiase.auth.presentation.login.LoginScreenRoot
 import com.glambiase.auth.presentation.registration.RegistrationScreenRoot
+import com.glambiase.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
 fun NavigationRoot(
@@ -83,7 +84,8 @@ private fun NavGraphBuilder.runGraph(navHostController: NavHostController) {
         startDestination = Routes.RunOverview
     ) {
         composable<Routes.RunOverview> {
-            Text(text = "Run Overview")
+            RunOverviewScreenRoot(
+            )
         }
     }
 }

@@ -42,7 +42,7 @@ import com.glambiase.core.presentation.designsystem.RunTrackerDarkRed
 import com.glambiase.core.presentation.designsystem.RunTrackerGreen
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 import com.glambiase.core.presentation.designsystem.components.ClickableTextWrapper
-import com.glambiase.core.presentation.designsystem.components.GradientBackground
+import com.glambiase.core.presentation.designsystem.components.RunTrackerGradientBackground
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerActionButton
 import com.glambiase.core.presentation.designsystem.components.textfields.RunTrackerPasswordTextField
 import com.glambiase.core.presentation.designsystem.components.textfields.RunTrackerTextField
@@ -89,7 +89,7 @@ fun RegistrationScreen(
     state: RegistrationState,
     onAction: (RegistrationAction) -> Unit
 ) {
-    GradientBackground {
+    RunTrackerGradientBackground {
         Column(
             modifier = Modifier
                 .fillMaxSize()
