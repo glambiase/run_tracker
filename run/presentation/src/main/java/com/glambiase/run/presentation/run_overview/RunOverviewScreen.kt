@@ -20,8 +20,8 @@ import com.glambiase.core.presentation.designsystem.RunIcon
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 import com.glambiase.core.presentation.designsystem.components.RunTrackerScaffold
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerFloatingActionButton
-import com.glambiase.core.presentation.designsystem.components.topappbar.DropDownItem
-import com.glambiase.core.presentation.designsystem.components.topappbar.RunTrackerTopAppBar
+import com.glambiase.core.presentation.designsystem.components.topappbars.DropDownItem
+import com.glambiase.core.presentation.designsystem.components.topappbars.RunTrackerTopAppBar
 import com.glambiase.run.presentation.R
 import org.koin.androidx.compose.koinViewModel
 

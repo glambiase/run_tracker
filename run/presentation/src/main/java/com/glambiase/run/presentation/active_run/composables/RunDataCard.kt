@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -59,13 +58,13 @@ fun RunDataCard(
                 title = stringResource(id = R.string.distance),
                 value = (runData.distanceMeters / 1000.0).toFormattedKm(),
                 modifier = Modifier
-                    .defaultMinSize(minWidth = 72.dp)
+                    .weight(1f)
             )
             RunDataItem(
                 title = stringResource(id = R.string.pace),
                 value = elapsedTime.toFormattedPace(distanceKm = runData.distanceMeters / 1000.0),
                 modifier = Modifier
-                    .defaultMinSize(minWidth = 72.dp)
+                    .weight(1f)
             )
         }
     }

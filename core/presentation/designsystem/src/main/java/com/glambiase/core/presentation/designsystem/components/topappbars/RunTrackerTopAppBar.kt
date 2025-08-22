@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.glambiase.core.presentation.designsystem.components.topappbar
+package com.glambiase.core.presentation.designsystem.components.topappbars
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

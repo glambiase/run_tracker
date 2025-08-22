@@ -25,9 +25,7 @@ fun RunTrackerGradientBackground(
     hasTopAppBar: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    /**
-     * Calculations to make the component look nice for different screen configurations and sizes.
-     */
+    // calculations to make the component look nice for different screen configurations and sizes
     val configuration = LocalConfiguration.current
     val density = LocalDensity.current
 
