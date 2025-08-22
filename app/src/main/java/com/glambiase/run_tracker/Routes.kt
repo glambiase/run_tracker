@@ -24,5 +24,8 @@ sealed interface Routes {
 
     @Serializable
     data object RunOverview : Routes
+
+    @Serializable
+    data object ActiveRun : Routes
     /*** ***/
 }

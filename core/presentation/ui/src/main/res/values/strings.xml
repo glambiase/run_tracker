@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="error_disk_full">Failed to save the item because your disk is full.</string>
     <string name="error_request_timeout">The request timed out.</string>
     <string name="error_too_many_requests">You\'ve hit your requests limit.</string>

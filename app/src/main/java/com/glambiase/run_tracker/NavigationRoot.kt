@@ -1,6 +1,5 @@
 package com.glambiase.run_tracker
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -10,6 +9,7 @@ import androidx.navigation.compose.navigation
 import com.glambiase.auth.presentation.intro.IntroScreenRoot
 import com.glambiase.auth.presentation.login.LoginScreenRoot
 import com.glambiase.auth.presentation.registration.RegistrationScreenRoot
+import com.glambiase.run.presentation.active_run.ActiveRunScreenRoot
 import com.glambiase.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -85,6 +85,13 @@ private fun NavGraphBuilder.runGraph(navHostController: NavHostController) {
     ) {
         composable<Routes.RunOverview> {
             RunOverviewScreenRoot(
+                onStartRunClick = {
+                    navHostController.navigate(Routes.ActiveRun)
+                }
+            )
+        }
+        composable<Routes.ActiveRun> {
+            ActiveRunScreenRoot(
             )
         }
     }

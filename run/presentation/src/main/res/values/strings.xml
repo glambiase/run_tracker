@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- common strings -->
 
-    <string name="run_tracker">Run Tracker</string>
+    <!-- run_overview screen -->
+    <string name="run_overview_main_text">Run Tracker</string>
     <string name="analytics">Analytics</string>
     <string name="logout">Logout</string>
+
+    <!-- active_run screen -->
+    <string name="active_run_main_text">Active Run</string>
+    <string name="duration">Duration</string>
+    <string name="distance">Distance</string>
+    <string name="pace">Pace</string>
+
+    <!-- accessibility content descriptions -->
+    <string name="start_run">start run</string>
+    <string name="stop_run">stop run</string>
 </resources>

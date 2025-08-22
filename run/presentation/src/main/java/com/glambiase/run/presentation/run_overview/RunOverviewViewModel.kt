@@ -7,9 +7,9 @@ class RunOverviewViewModel(
 
     fun onAction(action: RunOverviewAction) {
         when (action) {
+            RunOverviewAction.OnStartRunClick -> Unit // we navigate directly from the UI
             RunOverviewAction.OnAnalyticsClick -> TODO()
             RunOverviewAction.OnLogoutClick -> TODO()
-            RunOverviewAction.OnStartClick -> TODO()
         }
     }
 }

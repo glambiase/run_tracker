@@ -27,10 +27,17 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RunOverviewScreenRoot(
+    onStartRunClick: () -> Unit,
     viewModel: RunOverviewViewModel = koinViewModel()
 ) {
     RunOverviewScreen(
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                RunOverviewAction.OnStartRunClick -> onStartRunClick()
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
@@ -47,7 +54,7 @@ fun RunOverviewScreen(
         topAppBar = {
             RunTrackerTopAppBar(
                 showBackButton = false,
-                title = stringResource(id = R.string.run_tracker),
+                title = stringResource(id = R.string.run_overview_main_text),
                 menuItems = listOf(
                     DropDownItem(
                         icon = AnalyticsIcon,
@@ -80,7 +87,7 @@ fun RunOverviewScreen(
             RunTrackerFloatingActionButton(
                 icon = RunIcon,
                 onClick = {
-                    onAction(RunOverviewAction.OnStartClick)
+                    onAction(RunOverviewAction.OnStartRunClick)
                 }
             )
         }
