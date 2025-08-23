@@ -102,8 +102,7 @@ private fun RunDataCardPreview() {
         RunDataCard(
             elapsedTime = 64.minutes,
             runData = RunData(
-                distanceMeters = 9271,
-                pace = 6.minutes
+                distanceMeters = 9271
             )
         )
     }

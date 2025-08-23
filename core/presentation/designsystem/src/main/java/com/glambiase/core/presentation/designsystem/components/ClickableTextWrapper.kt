@@ -39,7 +39,7 @@ fun ClickableTextWrapper(
                 detectTapGestures { tappedLocationCoordinates ->
                     textLayoutResult?.let { layoutResult ->
                         val tappedCharIndex = layoutResult.getOffsetForPosition(tappedLocationCoordinates)
-                        // check if there is an annotation whose span includes the index of the character that was tapped
+                        // Check if there is an annotation whose span includes the index of the character that was tapped
                         text.getStringAnnotations(start = tappedCharIndex, end = tappedCharIndex)
                             .firstOrNull()
                             ?.let { annotation ->

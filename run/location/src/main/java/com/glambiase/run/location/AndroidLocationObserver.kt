@@ -39,7 +39,7 @@ class AndroidLocationObserver(
             if (!isGpsEnabled && !isNetworkEnabled) delay(3000L)
         }
 
-        if (!isActive) return@callbackFlow // flow was cancelled while waiting, so return
+        if (!isActive) return@callbackFlow // Flow was cancelled while waiting, so return
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -65,7 +65,7 @@ class AndroidLocationObserver(
         try {
             client.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
         } catch (e: SecurityException) {
-            // if permissions are revoked mid-stream, close the channel and exit (prevents leaks)
+            // If permissions are revoked mid-stream, close the channel and exit (prevents leaks)
             close(e)
             return@callbackFlow
         }

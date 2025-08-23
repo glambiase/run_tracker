@@ -45,7 +45,7 @@ class LoginViewModel(
         when (action) {
             LoginAction.OnLoginClick -> login()
             LoginAction.OnPasswordVisibilityClick -> state = state.copy(isPasswordVisible = !state.isPasswordVisible)
-            LoginAction.OnRegisterClick -> Unit // we navigate directly from the UI
+            LoginAction.OnRegisterClick -> Unit // We navigate directly from the UI
         }
     }
 

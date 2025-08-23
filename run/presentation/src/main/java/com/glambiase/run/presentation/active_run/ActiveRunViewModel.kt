@@ -33,7 +33,7 @@ class ActiveRunViewModel(
             }
             .launchIn(viewModelScope)
 
-        // test
+        // TODO GPL: test - to be removed
         runningTracker.currentLocation
             .onEach {
                 Timber.d("current location: $it")
@@ -43,7 +43,7 @@ class ActiveRunViewModel(
 
     fun onAction(action: ActiveRunAction) {
         when (action) {
-            ActiveRunAction.OnBackClick -> Unit // we navigate directly from the UI
+            ActiveRunAction.OnBackClick -> Unit // We navigate directly from the UI
             ActiveRunAction.OnStartAndStopRunClick -> TODO()
             ActiveRunAction.OnFinishRunClick -> TODO()
             ActiveRunAction.OnResumeRunClick -> TODO()
