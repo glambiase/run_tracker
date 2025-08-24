@@ -25,6 +25,7 @@ import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 import com.glambiase.core.presentation.designsystem.StartIcon
 import com.glambiase.core.presentation.designsystem.StopIcon
 import com.glambiase.core.presentation.designsystem.components.RunTrackerScaffold
+import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerActionButton
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerFloatingActionButton
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerOutlinedActionButton
 import com.glambiase.core.presentation.designsystem.components.dialogs.RunTrackerDialog
@@ -151,6 +152,36 @@ fun ActiveRunScreen(
                     .fillMaxWidth()
             )
         }
+    }
+
+    if (!state.shouldTrack && state.hasStartedRunning) {
+        RunTrackerDialog(
+            title = stringResource(id = R.string.running_is_paused),
+            description = stringResource(id = R.string.resume_or_finish_run),
+            onDismiss = {
+                onAction(ActiveRunAction.OnResumeRunClick)
+            },
+            primaryButton = {
+                RunTrackerActionButton(
+                    text = stringResource(id = R.string.resume),
+                    isLoading = false,
+                    onClick = {
+                        onAction(ActiveRunAction.OnResumeRunClick)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+            },
+            secondaryButton = {
+                RunTrackerOutlinedActionButton(
+                    text = stringResource(id = R.string.finish),
+                    isLoading = false,
+                    onClick = {
+                        onAction(ActiveRunAction.OnFinishRunClick)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        )
     }
 
     if (state.showLocationPermissionRationale || state.showNotificationPermissionRationale) {
