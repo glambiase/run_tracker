@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 import com.glambiase.core.presentation.designsystem.StartIcon
 import com.glambiase.core.presentation.designsystem.StopIcon
@@ -30,6 +31,7 @@ import com.glambiase.core.presentation.designsystem.components.dialogs.RunTracke
 import com.glambiase.core.presentation.designsystem.components.topappbars.RunTrackerTopAppBar
 import com.glambiase.run.presentation.R
 import com.glambiase.run.presentation.active_run.composables.RunDataCard
+import com.glambiase.run.presentation.active_run.maps.RunTrackerMap
 import com.glambiase.run.presentation.permissions.hasLocationPermission
 import com.glambiase.run.presentation.permissions.hasNotificationPermission
 import com.glambiase.run.presentation.permissions.requestRunTrackerPermissions
@@ -132,10 +134,19 @@ fun ActiveRunScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surface)
         ) {
+            RunTrackerMap(
+                isRunFinished = state.isRunFinished,
+                currentLocation = state.currentLocation,
+                locations = state.runData.locations,
+                onSnapshot = {},
+                modifier = Modifier
+                    .fillMaxSize()
+            )
             RunDataCard(
                 elapsedTime = state.elapsedTime,
                 runData = state.runData,
                 modifier = Modifier
+                    .padding(16.dp)
                     .padding(paddingValues)
                     .fillMaxWidth()
             )
