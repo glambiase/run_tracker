@@ -3,15 +3,18 @@ package com.glambiase.run.presentation.active_run
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.glambiase.run.domain.RunningTracker
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
-import timber.log.Timber
+import kotlinx.coroutines.flow.stateIn
 
 class ActiveRunViewModel(
     private val runningTracker: RunningTracker
@@ -24,6 +27,14 @@ class ActiveRunViewModel(
     val events = eventChannel.receiveAsFlow()
 
     private val hasLocationPermission = MutableStateFlow(false)
+    private val shouldTrack = snapshotFlow { state.shouldTrack }
+        .stateIn(scope = viewModelScope, started = SharingStarted.Lazily, initialValue = state.shouldTrack)
+    private val isTracking = combine(
+        shouldTrack,
+        hasLocationPermission
+    ) { shouldTrack, hasPermission ->
+        shouldTrack && hasPermission
+    }.stateIn(scope = viewModelScope, started = SharingStarted.Lazily, initialValue = false)
 
     init {
         hasLocationPermission
@@ -33,20 +44,50 @@ class ActiveRunViewModel(
             }
             .launchIn(viewModelScope)
 
-        // TODO GPL: test - to be removed
+        isTracking
+            .onEach { isTracking ->
+                runningTracker.setIsTracking(isTracking)
+            }
+            .launchIn(viewModelScope)
+
         runningTracker.currentLocation
             .onEach {
-                Timber.d("current location: $it")
+                state = state.copy(currentLocation = it?.location)
+            }
+            .launchIn(viewModelScope)
+
+        runningTracker.runData
+            .onEach {
+                state = state.copy(runData = it)
+            }
+            .launchIn(viewModelScope)
+
+        runningTracker.elapsedTime
+            .onEach {
+                state = state.copy(elapsedTime = it)
             }
             .launchIn(viewModelScope)
     }
 
     fun onAction(action: ActiveRunAction) {
         when (action) {
-            ActiveRunAction.OnBackClick -> Unit // We navigate directly from the UI
-            ActiveRunAction.OnStartAndStopRunClick -> TODO()
+            ActiveRunAction.OnBackClick -> {
+                state = state.copy(
+                    shouldTrack = false
+                )
+            }
+            ActiveRunAction.OnStartAndStopRunClick -> {
+                state = state.copy(
+                    hasStartedRunning = true,
+                    shouldTrack = !state.shouldTrack
+                )
+            }
             ActiveRunAction.OnFinishRunClick -> TODO()
-            ActiveRunAction.OnResumeRunClick -> TODO()
+            ActiveRunAction.OnResumeRunClick -> {
+                state = state.copy(
+                    shouldTrack = true
+                )
+            }
             is ActiveRunAction.SubmitLocationPermissionInfo -> {
                 hasLocationPermission.value = action.isLocationPermissionGranted
                 state = state.copy(

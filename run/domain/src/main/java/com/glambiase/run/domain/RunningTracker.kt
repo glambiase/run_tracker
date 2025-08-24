@@ -40,11 +40,7 @@ class RunningTracker(
             if (isObservingLocation) locationObserver.observeLocation(OBSERVE_LOCATION_INTERVAL_MILLIS)
             else emptyFlow()
         }
-        .stateIn(
-            scope = applicationScope,
-            started = SharingStarted.Lazily,
-            initialValue = null
-        )
+        .stateIn(scope = applicationScope, started = SharingStarted.Lazily, initialValue = null)
 
     init {
         isTracking
