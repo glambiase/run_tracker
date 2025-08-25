@@ -17,6 +17,8 @@
     <string name="resume">Resume</string>
     <string name="finish">Finish</string>
 
+    <string name="notification_title">Active Run</string>
+
     <!-- permissions -->
     <string name="permission_required">Permission Required</string>
     <string name="location_and_notification_rationale">To track your location and display the run\'s duration as a notification, this app needs your permission.</string>

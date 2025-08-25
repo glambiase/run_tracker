@@ -1,15 +1,18 @@
 package com.glambiase.run_tracker
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.navDeepLink
 import com.glambiase.auth.presentation.intro.IntroScreenRoot
 import com.glambiase.auth.presentation.login.LoginScreenRoot
 import com.glambiase.auth.presentation.registration.RegistrationScreenRoot
 import com.glambiase.run.presentation.active_run.ActiveRunScreenRoot
+import com.glambiase.run.presentation.active_run.service.ActiveRunService
 import com.glambiase.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -90,8 +93,26 @@ private fun NavGraphBuilder.runGraph(navHostController: NavHostController) {
                 }
             )
         }
-        composable<Routes.ActiveRun> {
+        composable<Routes.ActiveRun>(
+            deepLinks = listOf(
+                navDeepLink<Routes.ActiveRun>(
+                    basePath = "run_tracker://active_run"
+                )
+            )
+        ) {
+            val context = LocalContext.current
             ActiveRunScreenRoot(
+                onServiceToggle = { shouldServiceRun ->
+                    if (shouldServiceRun) {
+                        context.startService(
+                            ActiveRunService.createStartIntent(context = context, activityClass = MainActivity::class.java)
+                        )
+                    } else {
+                        context.startService(
+                            ActiveRunService.createStopIntent(context = context)
+                        )
+                    }
+                }
             )
         }
     }
