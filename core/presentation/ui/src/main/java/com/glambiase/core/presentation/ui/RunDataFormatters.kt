@@ -16,6 +16,8 @@ fun Duration.formatted(): String {
 
 fun Double.toFormattedKm() = "${roundToDecimalPlaces(decimalPlace = 1)} km"
 
+fun Double.toFormattedKmH() = "${roundToDecimalPlaces(decimalPlace = 1)} km/h"
+
 fun Duration.toFormattedPace(distanceKm: Double): String {
     if (this == Duration.ZERO || distanceKm <= 0.0) return "-"
 
@@ -30,3 +32,5 @@ private fun Double.roundToDecimalPlaces(decimalPlace: Int): Double {
     val factor = 10f.pow(decimalPlace)
     return round(this * factor) / factor
 }
+
+fun Int.toFormattedMeters() = "$this m"
