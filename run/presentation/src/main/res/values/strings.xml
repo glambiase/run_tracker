@@ -6,6 +6,12 @@
     <string name="run_overview_main_text">Run Tracker</string>
     <string name="analytics">Analytics</string>
     <string name="logout">Logout</string>
+    <string name="avg_speed">Average Speed</string>
+    <string name="max_speed">Max Speed</string>
+    <string name="tot_elevation">Total Elevation</string>
+    <string name="delete">Delete</string>
+    <string name="image_loading_error">Could not load image.</string>
+    <string name="running_time">Running time</string>
 
     <!-- active_run screen -->
     <string name="active_run_main_text">Active Run</string>
@@ -16,7 +22,6 @@
     <string name="resume_or_finish_run">Do you want to resume or finish the run?</string>
     <string name="resume">Resume</string>
     <string name="finish">Finish</string>
-
     <string name="notification_title">Active Run</string>
 
     <!-- permissions -->
@@ -29,4 +34,5 @@
     <!-- accessibility content descriptions -->
     <string name="start_run">start run</string>
     <string name="stop_run">stop run</string>
+    <string name="run_map">run map</string>
 </resources>
