@@ -107,6 +107,13 @@ class RunningTracker(
         _isTracking.value = isTracking
     }
 
+    fun finishRun() {
+        stopObservingLocation()
+        setIsTracking(isTracking = false)
+        _elapsedTime.value = Duration.ZERO
+        _runData.value = RunData()
+    }
+
     private fun <T> List<List<T>>.replaceLastList(list: List<T>) =
         if (isEmpty()) listOf(list)
         else dropLast(1) + listOf(list)

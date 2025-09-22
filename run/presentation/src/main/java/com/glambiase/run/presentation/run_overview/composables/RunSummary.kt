@@ -121,7 +121,7 @@ private fun MapImage(
         contentDescription = stringResource(id = R.string.run_map),
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(ratio = 16 / 9f)
+            .aspectRatio(16 / 9f)
             .clip(RoundedCornerShape(16.dp)),
         loading = {
             Box(

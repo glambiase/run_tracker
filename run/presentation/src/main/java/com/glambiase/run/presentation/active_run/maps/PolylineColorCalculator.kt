@@ -12,7 +12,7 @@ object PolylineColorCalculator {
         locationA: LocationWithAltitudeAndTimestamp,
         locationB: LocationWithAltitudeAndTimestamp
     ): Color {
-        val distanceMeters = locationA.locationWithAltitude.location.distanceTo(locationB.locationWithAltitude.location)
+        val distanceMeters = locationA.locationWithAltitude.location.distanceMetersTo(locationB.locationWithAltitude.location)
         val timeDiff = abs((locationB.timestamp - locationA.timestamp).inWholeSeconds)
         val speedKmHour = (distanceMeters / timeDiff) * 3.6
 

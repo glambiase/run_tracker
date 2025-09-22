@@ -9,7 +9,7 @@ data class Location(
     val lat: Double,
     val long: Double
 ) {
-    fun distanceTo(other: Location): Double {
+    fun distanceMetersTo(other: Location): Double {
         val latDistance = Math.toRadians(other.lat - lat)
         val longDistance = Math.toRadians(other.long - long)
         val a = sin(latDistance / 2) * sin(latDistance / 2) +

@@ -3,6 +3,7 @@
 package com.glambiase.run.presentation.active_run
 
 import android.Manifest
+import android.graphics.Bitmap
 import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -40,6 +41,7 @@ import com.glambiase.run.presentation.permissions.requestRunTrackerPermissions
 import com.glambiase.run.presentation.permissions.shouldShowLocationPermissionRationale
 import com.glambiase.run.presentation.permissions.shouldShowNotificationPermissionRationale
 import org.koin.androidx.compose.koinViewModel
+import java.io.ByteArrayOutputStream
 
 @Composable
 fun ActiveRunScreenRoot(
@@ -152,7 +154,17 @@ fun ActiveRunScreen(
                 isRunFinished = state.isRunFinished,
                 currentLocation = state.currentLocation,
                 locations = state.runData.locations,
-                onSnapshot = {},
+                onSnapshot = { bitmap ->
+                    val stream = ByteArrayOutputStream()
+                    stream.use {
+                        bitmap.compress(
+                            Bitmap.CompressFormat.JPEG,
+                            80,
+                            it
+                        )
+                    }
+                    onAction(ActiveRunAction.OnRunProcessed(mapPictureBytes = stream.toByteArray()))
+                },
                 modifier = Modifier
                     .fillMaxSize()
             )
@@ -187,7 +199,7 @@ fun ActiveRunScreen(
             secondaryButton = {
                 RunTrackerOutlinedActionButton(
                     text = stringResource(id = R.string.finish),
-                    isLoading = false,
+                    isLoading = state.isSavingRun,
                     onClick = {
                         onAction(ActiveRunAction.OnFinishRunClick)
                     },
