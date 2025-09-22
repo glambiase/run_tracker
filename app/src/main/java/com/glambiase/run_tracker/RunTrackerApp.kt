@@ -4,6 +4,7 @@ import android.app.Application
 import com.glambiase.auth.data.di.authDataModule
 import com.glambiase.auth.presentation.di.authPresentationModule
 import com.glambiase.core.data.di.coreDataModule
+import com.glambiase.core.database.di.databaseModule
 import com.glambiase.run.location.di.locationModule
 import com.glambiase.run.presentation.di.runPresentationModule
 import com.glambiase.run_tracker.di.appModule
@@ -33,7 +34,8 @@ class RunTrackerApp : Application() {
                 authDataModule,
                 authPresentationModule,
                 runPresentationModule,
-                locationModule
+                locationModule,
+                databaseModule
             )
         }
     }
