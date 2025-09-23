@@ -1,6 +1,6 @@
 package com.glambiase.run.presentation.run_overview.model
 
-data class RunUi(
+data class RunUI(
     val id: String,
     val duration: String,
     val dateTime: String,

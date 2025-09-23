@@ -8,6 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.glambiase.core.domain.location.Location
 import com.glambiase.core.domain.run.Run
+import com.glambiase.core.domain.run.RunRepository
+import com.glambiase.core.domain.util.Result
+import com.glambiase.core.presentation.ui.asUiText
 import com.glambiase.run.domain.LocationDataCalculator
 import com.glambiase.run.domain.RunningTracker
 import com.glambiase.run.presentation.active_run.service.ActiveRunService
@@ -25,6 +28,7 @@ import java.time.ZonedDateTime
 
 class ActiveRunViewModel(
     private val runningTracker: RunningTracker,
+    private val runRepository: RunRepository
 ) : ViewModel() {
 
     var state by mutableStateOf(ActiveRunState(
@@ -129,9 +133,7 @@ class ActiveRunViewModel(
     private fun finishRun(mapPictureBytes: ByteArray) {
         val locations = state.runData.locations
         if (locations.isEmpty() || locations.first().size <= 1) {
-            state = state.copy(
-                isSavingRun = false
-            )
+            state = state.copy(isSavingRun = false)
             return
         }
 
@@ -149,7 +151,10 @@ class ActiveRunViewModel(
 
             runningTracker.finishRun()
 
-            // TODO: Save run in repository
+            when (val result = runRepository.upsertRun(run = run, mapPicture = mapPictureBytes)) {
+                is Result.Success -> eventChannel.send(ActiveRunEvent.RunSaved)
+                is Result.Error -> eventChannel.send(ActiveRunEvent.Error(result.error.asUiText()))
+            }
 
             state = state.copy(isSavingRun = false)
         }

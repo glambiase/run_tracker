@@ -5,6 +5,7 @@ package com.glambiase.run.presentation.active_run
 import android.Manifest
 import android.graphics.Bitmap
 import android.os.Build
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,6 +32,7 @@ import com.glambiase.core.presentation.designsystem.components.buttons.RunTracke
 import com.glambiase.core.presentation.designsystem.components.buttons.RunTrackerOutlinedActionButton
 import com.glambiase.core.presentation.designsystem.components.dialogs.RunTrackerDialog
 import com.glambiase.core.presentation.designsystem.components.topappbars.RunTrackerTopAppBar
+import com.glambiase.core.presentation.ui.ObserveAsEvents
 import com.glambiase.run.presentation.R
 import com.glambiase.run.presentation.active_run.composables.RunDataCard
 import com.glambiase.run.presentation.active_run.maps.RunTrackerMap
@@ -45,13 +47,31 @@ import java.io.ByteArrayOutputStream
 
 @Composable
 fun ActiveRunScreenRoot(
+    onFinish: () -> Unit,
+    onBack: () -> Unit,
     onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     viewModel: ActiveRunViewModel = koinViewModel()
 ) {
+    val context = LocalContext.current
+    ObserveAsEvents(flow = viewModel.events) { event ->
+        when (event) {
+            is ActiveRunEvent.RunSaved -> onFinish
+            is ActiveRunEvent.Error -> {
+                Toast.makeText(context, event.error.asString(context), Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
     ActiveRunScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction,
-        onServiceToggle = onServiceToggle
+        onServiceToggle = onServiceToggle,
+        onAction = { action ->
+            when (action) {
+                ActiveRunAction.OnBackClick -> if (!viewModel.state.hasStartedRunning) onBack
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 

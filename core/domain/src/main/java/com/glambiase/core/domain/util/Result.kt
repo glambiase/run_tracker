@@ -7,9 +7,9 @@ sealed interface Result<out D, out E : Error> {
     data class Error<out E : com.glambiase.core.domain.util.Error>(val error: E) : Result<Nothing, E>
 }
 
-inline fun <T, E : Error, R> Result<T, E>.map(map: (T) -> R): Result<R, E> =
+inline fun <T, E : Error, R> Result<T, E>.map(transform: (T) -> R): Result<R, E> =
     when (this) {
-        is Result.Success -> Result.Success(map(data))
+        is Result.Success -> Result.Success(transform(data))
         is Result.Error -> Result.Error(error)
     }
 

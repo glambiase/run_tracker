@@ -4,8 +4,9 @@ import android.app.Application
 import com.glambiase.auth.data.di.authDataModule
 import com.glambiase.auth.presentation.di.authPresentationModule
 import com.glambiase.core.data.di.coreDataModule
-import com.glambiase.core.database.di.databaseModule
-import com.glambiase.run.location.di.locationModule
+import com.glambiase.core.database.di.coreDatabaseModule
+import com.glambiase.run.location.di.runLocationModule
+import com.glambiase.run.network.di.runNetworkModule
 import com.glambiase.run.presentation.di.runPresentationModule
 import com.glambiase.run_tracker.di.appModule
 import kotlinx.coroutines.CoroutineScope
@@ -31,11 +32,12 @@ class RunTrackerApp : Application() {
             modules(
                 appModule,
                 coreDataModule,
+                coreDatabaseModule,
                 authDataModule,
                 authPresentationModule,
                 runPresentationModule,
-                locationModule,
-                databaseModule
+                runLocationModule,
+                runNetworkModule
             )
         }
     }

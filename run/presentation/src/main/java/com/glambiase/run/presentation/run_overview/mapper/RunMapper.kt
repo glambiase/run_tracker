@@ -6,11 +6,11 @@ import com.glambiase.core.presentation.ui.toFormattedKm
 import com.glambiase.core.presentation.ui.toFormattedKmH
 import com.glambiase.core.presentation.ui.toFormattedMeters
 import com.glambiase.core.presentation.ui.toFormattedPace
-import com.glambiase.run.presentation.run_overview.model.RunUi
+import com.glambiase.run.presentation.run_overview.model.RunUI
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-fun Run.toRunUI(): RunUi {
+fun Run.toRunUI(): RunUI {
 
     val dateTimeInLocalTime = dateTimeUtc.withZoneSameInstant(ZoneId.systemDefault())
     val formattedDateTime = DateTimeFormatter
@@ -18,7 +18,7 @@ fun Run.toRunUI(): RunUi {
         .format(dateTimeInLocalTime)
     val distanceKm = distanceMeters / 1000.0
 
-    return RunUi(
+    return RunUI(
         id = id.orEmpty(),
         duration = duration.formatted(),
         dateTime = formattedDateTime,

@@ -55,8 +55,8 @@ import com.glambiase.core.presentation.designsystem.RunOutlinedIcon
 import com.glambiase.run.presentation.R
 import com.glambiase.core.presentation.designsystem.RunTrackerTheme
 import com.glambiase.run.presentation.run_overview.mapper.toRunUI
-import com.glambiase.run.presentation.run_overview.model.RunDataUi
-import com.glambiase.run.presentation.run_overview.model.RunUi
+import com.glambiase.run.presentation.run_overview.model.RunDataUI
+import com.glambiase.run.presentation.run_overview.model.RunUI
 import java.time.ZonedDateTime
 import kotlin.math.max
 import kotlin.time.Duration.Companion.minutes
@@ -64,11 +64,11 @@ import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun RunSummary(
-    runUi: RunUi,
+    runUI: RunUI,
     onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var showDropDown by rememberSaveable { mutableStateOf(false) }
+    var showDropDown by remember { mutableStateOf(false) }
 
     Box {
         Column(
@@ -81,16 +81,15 @@ fun RunSummary(
                     onClick = {},
                     onLongClick = { showDropDown = true }
                 )
-                .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {
-            MapImage(imageUrl = runUi.mapPictureUrl)
+            MapImage(imageUrl = runUI.mapPictureUrl)
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f))
-            RunningTimeSection(duration = runUi.duration)
+            RunningTimeSection(duration = runUI.duration)
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f))
-            RunningDateSection(dateTime = runUi.dateTime)
+            RunningDateSection(dateTime = runUI.dateTime)
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f))
-            DataGrid(runUi = runUi)
+            DataGrid(runUI = runUI)
         }
         DropdownMenu(
             expanded = showDropDown,
@@ -223,29 +222,29 @@ private fun RunningDateSection(
 
 @Composable
 private fun DataGrid(
-    runUi: RunUi,
+    runUI: RunUI,
     modifier: Modifier = Modifier
 ) {
-    val runDataUiList = listOf(
-        RunDataUi(
+    val runDataUILists = listOf(
+        RunDataUI(
             text = stringResource(id = R.string.distance),
-            value = runUi.distance
+            value = runUI.distance
         ),
-        RunDataUi(
+        RunDataUI(
             text = stringResource(id = R.string.pace),
-            value = runUi.pace
+            value = runUI.pace
         ),
-        RunDataUi(
+        RunDataUI(
             text = stringResource(id = R.string.avg_speed),
-            value = runUi.avgSpeed
+            value = runUI.avgSpeed
         ),
-        RunDataUi(
+        RunDataUI(
             text = stringResource(id = R.string.max_speed),
-            value = runUi.maxSpeed
+            value = runUI.maxSpeed
         ),
-        RunDataUi(
+        RunDataUI(
             text = stringResource(id = R.string.tot_elevation),
-            value = runUi.totalElevation
+            value = runUI.totalElevation
         )
     )
 
@@ -258,9 +257,9 @@ private fun DataGrid(
         verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxWidth()
     ) {
-        runDataUiList.forEach { runDataUi ->
+        runDataUILists.forEach { runDataUI ->
             DataGridCell(
-                runDataUi = runDataUi,
+                runDataUI = runDataUI,
                 modifier = Modifier
                     .defaultMinSize(minWidth = maxCellWidthDp)
                     .onSizeChanged {
@@ -273,7 +272,7 @@ private fun DataGrid(
 
 @Composable
 private fun DataGridCell(
-    runDataUi: RunDataUi,
+    runDataUI: RunDataUI,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -289,13 +288,13 @@ private fun DataGridCell(
             .padding(8.dp)
     ) {
         Text(
-            text = runDataUi.text,
+            text = runDataUI.text,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 12.sp
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = runDataUi.value,
+            text = runDataUI.value,
             color = MaterialTheme.colorScheme.onSurface
         )
     }
@@ -306,7 +305,7 @@ private fun DataGridCell(
 private fun RunListItemPreview() {
     RunTrackerTheme {
         RunSummary(
-            runUi = Run(
+            runUI = Run(
                 id = "101",
                 duration = 60.minutes + 45.seconds,
                 dateTimeUtc = ZonedDateTime.now(),
