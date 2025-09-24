@@ -4,6 +4,7 @@ import kotlin.math.pow
 import kotlin.math.round
 import kotlin.math.roundToInt
 import kotlin.time.Duration
+import kotlin.time.DurationUnit
 
 fun Duration.formatted(): String {
     val totalSeconds = inWholeSeconds
@@ -34,3 +35,11 @@ private fun Double.roundToDecimalPlaces(decimalPlace: Int): Double {
 }
 
 fun Int.toFormattedMeters() = "$this m"
+
+fun Duration.toFormattedTotalTime(): String {
+    val days = toLong(DurationUnit.DAYS)
+    val hours = toLong(DurationUnit.HOURS) % 24
+    val minutes = toLong(DurationUnit.MINUTES) % 60
+
+    return "${days}d ${hours}h ${minutes}m"
+}
