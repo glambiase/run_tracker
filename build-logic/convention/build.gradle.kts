@@ -46,5 +46,9 @@ gradlePlugin {
             id = "runtracker.jvm.ktor"
             implementationClass = "JvmKtorConventionPlugin"
         }
+        register("androidDynamicFeature") {
+            id = "runtracker.android.dynamic.feature"
+            implementationClass = "AndroidDynamicFeatureConventionPlugin"
+        }
     }
 }
