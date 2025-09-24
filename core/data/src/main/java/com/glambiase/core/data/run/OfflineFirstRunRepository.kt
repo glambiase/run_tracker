@@ -45,7 +45,6 @@ class OfflineFirstRunRepository(
             run = runWithId,
             mapPicture = mapPicture
         )
-
         return when (remoteResult) {
             is Result.Error -> Result.Success(Unit) // TODO: to be handle appropriately
             is Result.Success -> applicationScope.async {

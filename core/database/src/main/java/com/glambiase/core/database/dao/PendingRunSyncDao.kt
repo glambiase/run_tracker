@@ -1,10 +1,12 @@
 package com.glambiase.core.database.dao
 
+import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.glambiase.core.database.entity.PendingDeletedRunSyncEntity
 import com.glambiase.core.database.entity.PendingCreatedRunSyncEntity
 
+@Dao
 interface PendingRunSyncDao {
 
     @Query("SELECT * FROM pendingcreatedrunsyncentity WHERE userId=:userId")
