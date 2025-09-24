@@ -55,7 +55,7 @@ fun ActiveRunScreenRoot(
     val context = LocalContext.current
     ObserveAsEvents(flow = viewModel.events) { event ->
         when (event) {
-            is ActiveRunEvent.RunSaved -> onFinish
+            is ActiveRunEvent.RunSaved -> onFinish()
             is ActiveRunEvent.Error -> {
                 Toast.makeText(context, event.error.asString(context), Toast.LENGTH_LONG).show()
             }
