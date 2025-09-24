@@ -7,19 +7,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.glambiase.core.domain.run.Run
 import com.glambiase.core.domain.run.RunRepository
+import com.glambiase.core.domain.run.SyncRunScheduler
 import com.glambiase.run.presentation.run_overview.mapper.toRunUI
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.minutes
 
 class RunOverviewViewModel(
-    private val runRepository: RunRepository
+    private val runRepository: RunRepository,
+    private val syncRunScheduler: SyncRunScheduler
 ) : ViewModel() {
 
     var state by mutableStateOf(RunOverviewState())
         private set
 
     init {
+        viewModelScope.launch {
+            syncRunScheduler.scheduleSync(
+                syncType = SyncRunScheduler.SyncType.FetchRuns(interval = 30.minutes)
+            )
+        }
+
         runRepository.getRuns().onEach { runs ->
             val runsUI = runs.map(Run::toRunUI)
             state = state.copy(runs = runsUI)

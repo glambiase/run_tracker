@@ -8,6 +8,7 @@ import com.glambiase.core.domain.run.RemoteRunDataSource
 import com.glambiase.core.domain.run.Run
 import com.glambiase.core.domain.run.RunId
 import com.glambiase.core.domain.run.RunRepository
+import com.glambiase.core.domain.run.SyncRunScheduler
 import com.glambiase.core.domain.util.DataError
 import com.glambiase.core.domain.util.EmptyResult
 import com.glambiase.core.domain.util.Result
@@ -24,7 +25,8 @@ class OfflineFirstRunRepository(
     private val remoteRunDataSource: RemoteRunDataSource,
     private val pendingRunSyncDao: PendingRunSyncDao,
     private val sessionStorage: SessionStorage,
-    private val applicationScope: CoroutineScope
+    private val applicationScope: CoroutineScope,
+    private val syncRunScheduler: SyncRunScheduler
 ) : RunRepository {
     override fun getRuns(): Flow<List<Run>> = localRunDataSource.getRuns()
 
@@ -46,10 +48,19 @@ class OfflineFirstRunRepository(
             mapPicture = mapPicture
         )
         return when (remoteResult) {
-            is Result.Error -> Result.Success(Unit) // TODO: to be handle appropriately
-            is Result.Success -> applicationScope.async {
-                localRunDataSource.upsertRun(run = remoteResult.data).asEmptyResult()
-            }.await()
+            is Result.Success -> {
+                applicationScope.async {
+                    localRunDataSource.upsertRun(run = remoteResult.data).asEmptyResult()
+                }.await()
+            }
+            is Result.Error -> {
+                applicationScope.launch {
+                    syncRunScheduler.scheduleSync(
+                        syncType = SyncRunScheduler.SyncType.CreatedRun(run = runWithId, mapPictureBytes = mapPicture)
+                    )
+                }.join()
+                Result.Success(Unit)
+            }
         }
     }
 
@@ -67,6 +78,14 @@ class OfflineFirstRunRepository(
         val remoteResult = applicationScope.async {
             remoteRunDataSource.deleteRun(id)
         }.await()
+
+        if (remoteResult is Result.Error) {
+            applicationScope.launch {
+                syncRunScheduler.scheduleSync(
+                    syncType = SyncRunScheduler.SyncType.DeletedRun(runId = id)
+                )
+            }.join()
+        }
     }
 
     override suspend fun deleteAllRuns() = localRunDataSource.deleteAllRuns()
