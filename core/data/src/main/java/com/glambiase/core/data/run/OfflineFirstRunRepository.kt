@@ -1,5 +1,6 @@
 package com.glambiase.core.data.run
 
+import com.glambiase.core.data.networking.get
 import com.glambiase.core.database.dao.PendingRunSyncDao
 import com.glambiase.core.database.mapper.toRun
 import com.glambiase.core.domain.SessionStorage
@@ -13,6 +14,9 @@ import com.glambiase.core.domain.util.DataError
 import com.glambiase.core.domain.util.EmptyResult
 import com.glambiase.core.domain.util.Result
 import com.glambiase.core.domain.util.asEmptyResult
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.auth.authProviders
+import io.ktor.client.plugins.auth.providers.BearerAuthProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -26,7 +30,8 @@ class OfflineFirstRunRepository(
     private val pendingRunSyncDao: PendingRunSyncDao,
     private val sessionStorage: SessionStorage,
     private val applicationScope: CoroutineScope,
-    private val syncRunScheduler: SyncRunScheduler
+    private val syncRunScheduler: SyncRunScheduler,
+    private val httpClient: HttpClient
 ) : RunRepository {
     override fun getRuns(): Flow<List<Run>> = localRunDataSource.getRuns()
 
@@ -133,5 +138,15 @@ class OfflineFirstRunRepository(
             createdRunsJobs.forEach { it.join() }
             deletedRunsJobs.forEach { it.join() }
         }
+    }
+
+    override suspend fun logout(): EmptyResult<DataError.Network> {
+        val result = httpClient.get<Unit>(route = "/logout").asEmptyResult()
+
+        httpClient.authProviders.filterIsInstance<BearerAuthProvider>()
+            .firstOrNull()
+            ?.clearToken()
+
+        return result
     }
 }
