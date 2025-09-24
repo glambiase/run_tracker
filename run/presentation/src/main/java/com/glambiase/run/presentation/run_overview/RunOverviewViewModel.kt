@@ -47,13 +47,13 @@ class RunOverviewViewModel(
     fun onAction(action: RunOverviewAction) {
         when (action) {
             RunOverviewAction.OnStartRunClick -> Unit // We navigate directly from the UI
+            RunOverviewAction.OnAnalyticsClick -> Unit
+            RunOverviewAction.OnLogoutClick -> logout()
             is RunOverviewAction.DeleteRun -> {
                 viewModelScope.launch {
                     runRepository.deleteRun(id = action.runUI.id)
                 }
             }
-            RunOverviewAction.OnAnalyticsClick -> TODO()
-            RunOverviewAction.OnLogoutClick -> logout()
         }
     }
 

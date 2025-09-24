@@ -4,10 +4,20 @@
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_dynamicfeature">
+        dist:title="@string/title_dynamic_feature">
         <dist:delivery>
             <dist:on-demand />
         </dist:delivery>
         <dist:fusing dist:include="true" />
     </dist:module>
+
+    <application>
+        <activity android:name=".AnalyticsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.RunTracker">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RunTracker</string>
-    <string name="title_dynamicfeature">Analytics</string>
+    <string name="title_dynamic_feature">Analytics</string>
+    <string name="installing_module">Installing Analytics feature</string>
+    <string name="analytics_installed">The analytics feature was installed. Feel free to use it now.</string>
+    <string name="error_couldnt_load_module">Couldn\'t load Analytics feature</string>
+    <string name="error_installation_failed">Unfortunately, the installation failed. Please try again later.</string>
 </resources>

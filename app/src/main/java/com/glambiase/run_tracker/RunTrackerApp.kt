@@ -1,6 +1,7 @@
 package com.glambiase.run_tracker
 
 import android.app.Application
+import android.content.Context
 import com.glambiase.auth.data.di.authDataModule
 import com.glambiase.auth.presentation.di.authPresentationModule
 import com.glambiase.core.data.di.coreDataModule
@@ -10,6 +11,7 @@ import com.glambiase.run.location.di.runLocationModule
 import com.glambiase.run.network.di.runNetworkModule
 import com.glambiase.run.presentation.di.runPresentationModule
 import com.glambiase.run_tracker.di.appModule
+import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
@@ -43,5 +45,11 @@ class RunTrackerApp : Application() {
                 runDataModule
             )
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+
+        SplitCompat.install(this)
     }
 }

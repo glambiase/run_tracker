@@ -18,14 +18,15 @@ import com.glambiase.run.presentation.run_overview.RunOverviewScreenRoot
 @Composable
 fun NavigationRoot(
     navHostController: NavHostController,
-    isLoggedIn: Boolean
+    isLoggedIn: Boolean,
+    onAnalyticsClick: () -> Unit
 ) {
     NavHost(
         navController = navHostController,
         startDestination = if (isLoggedIn) Routes.Run else Routes.Auth
     ) {
         authGraph(navHostController = navHostController)
-        runGraph(navHostController = navHostController)
+        runGraph(navHostController = navHostController, onAnalyticsClick = onAnalyticsClick)
     }
 }
 
@@ -82,7 +83,10 @@ private fun NavGraphBuilder.authGraph(navHostController: NavHostController) {
     }
 }
 
-private fun NavGraphBuilder.runGraph(navHostController: NavHostController) {
+private fun NavGraphBuilder.runGraph(
+    navHostController: NavHostController,
+    onAnalyticsClick: () -> Unit
+) {
     navigation<Routes.Run>(
         startDestination = Routes.RunOverview
     ) {
@@ -91,6 +95,7 @@ private fun NavGraphBuilder.runGraph(navHostController: NavHostController) {
                 onStartRunClick = {
                     navHostController.navigate(Routes.ActiveRun)
                 },
+                onAnalyticsClick = onAnalyticsClick,
                 onLogoutClick = {
                     navHostController.navigate(Routes.Auth) {
                         popUpTo(Routes.Run) {
